@@ -9,11 +9,12 @@
 import SpriteKit
 
 class Pool: SKSpriteNode {
-    weak var next: Pool! = nil
-    weak var prev: Pool! = nil
-    var bitCount : Int = 0
-    var bitSize : CGFloat = 0
-    var bitTex = SKTexture(imageNamed: "bit")
+    private weak var next: Pool! = nil
+    private weak var prev: Pool! = nil
+    private var bitCount : Int = 0
+    private var bitSize : CGFloat = 0
+    private var bitTex = SKTexture(imageNamed: "bit")
+    private var playerOwned = false
     
     init(origin: CGPoint, width: CGFloat, height: CGFloat, bitSize: CGFloat) {
         self.bitSize = bitSize
@@ -196,20 +197,48 @@ class Pool: SKSpriteNode {
     }
     
     internal func redraw() {
+        removeAllChildren()
         calculateBitPositions()
     }
     
     internal func incBit() {
         ++bitCount
+        redraw()
     }
     
     internal func decBit() {
         if bitCount > 0 {
             --bitCount
         }
+        redraw()
     }
     
     internal func setBit(value: Int) {
         bitCount = value
+        redraw()
+    }
+    
+    internal func setPlayerOwned(value: Bool) {
+        playerOwned = value
+    }
+    
+    internal func isPlayerOwned() -> Bool {
+        return playerOwned
+    }
+    
+    internal func setNext(value: Pool) {
+        next = value
+    }
+    
+    internal func getNext() -> Pool {
+        return next
+    }
+    
+    internal func setPrev(value: Pool) {
+        prev = value
+    }
+    
+    internal func getPrev() -> Pool {
+        return prev
     }
 }
