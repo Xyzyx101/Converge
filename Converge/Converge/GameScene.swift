@@ -29,8 +29,6 @@ class GameScene: SKScene {
         poolLayer.zPosition = 100
         self.addChild(poolLayer)
         
-        //pools = []
-        
         buildBoard()
     }
     
@@ -62,29 +60,32 @@ class GameScene: SKScene {
         let size = CGSize(width: 2048, height: 1536)
         let poolWidth = 300 / size.width * frame.width
         let gapX = 36 / size.width * frame.width
-        let borderLandR = 34 / size.width * frame.width
+        let borderLR = 34 / size.width * frame.width
         let poolHeight = 400 / size.height * frame.height
         let gapY = 36 / size.height * frame.height
-        let borderTandB = 350 / size.height * frame.height
-        
-        //var pool = Pool(origin: CGPoint(x: 400, y: 400), width: poolWidth, height: poolHeight)
+        let borderTB = 350 / size.height * frame.height
+        let bitSize = 60 / size.height * frame.height
         
         var posX: CGFloat = 0
         var posY: CGFloat = 0
         for (var i = 0; i < 12; i++) {
             if (i < 6) {
-                posY = borderTandB
+                posY = borderTB
             } else {
-                posY = borderTandB + poolHeight + gapY
+                posY = borderTB + poolHeight + gapY
             }
-            if (i == 0 || i == 6) {
-                posX = borderLandR
+            if (i == 0 || i == 11) {
+                posX = borderLR
+            } else if (i > 5){
+                posX = borderLR + (5 - CGFloat(i%6)) * (poolWidth + gapX)
             } else {
-                posX = borderLandR + CGFloat(i%6) * (poolWidth + gapX)
+                posX = borderLR + CGFloat(i%6) * (poolWidth + gapX)
             }
-            var pool = Pool(origin: CGPoint(x: posX, y:posY), width: poolWidth, height: poolHeight)
+            var pool = Pool(origin: CGPoint(x: posX, y:posY), width: poolWidth, height: poolHeight, bitSize: bitSize)
             poolLayer.addChild(pool)
             pools.append(pool)
+            pool.setBit(i + 20)
+            pool.redraw()
         }
     }
 }
