@@ -81,13 +81,15 @@ class GameScene: SKScene {
             }
             var pool = Pool(origin: CGPoint(x: posX, y:posY), width: poolWidth, height: poolHeight, bitSize: bitSize)
             
-            if (prevPool != nil) { //special case first pool
+            if (prevPool != nil) {
                 pool.setPrev(prevPool)
                 prevPool.setNext(pool)
-            } else if (i == 11) {   // special case last pool
+            }
+            if (i == 11) {   // special case last pool
                 pool.setNext(pools[0])
                 pools[0].setPrev(pool)
             }
+            
             prevPool = pool
             pool.name = "pool"
             pool.setBit(4)
