@@ -22,7 +22,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="ebz-dh-KN2" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="YX4-EN-Ks7"/>
+                                    <segue destination="ebz-dh-KN2" kind="presentation" identifier="ToMainMenu" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="YX4-EN-Ks7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -195,6 +195,6 @@ Copyright</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="0nn-HH-ECu"/>
+        <segue reference="YX4-EN-Ks7"/>
     </inferredMetricsTieBreakers>
 </document>

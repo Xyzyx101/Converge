@@ -16,6 +16,8 @@ class Pool: SKSpriteNode {
     private var bitTex = SKTexture(imageNamed: "bit")
     private var playerOwned = false
     
+    internal var poolID : Int = 0// DELETE ME -- debug only
+    
     init(origin: CGPoint, width: CGFloat, height: CGFloat, bitSize: CGFloat) {
         self.bitSize = bitSize
         var texture = SKTexture(imageNamed: "pool")
@@ -216,6 +218,10 @@ class Pool: SKSpriteNode {
     internal func setBit(value: Int) {
         bitCount = value
         redraw()
+    }
+    
+    internal func getBit() -> Int {
+        return bitCount
     }
     
     internal func setPlayerOwned(value: Bool) {

@@ -19,6 +19,7 @@
 		05DD86B11B39F03B00EA9F87 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD86B01B39F03B00EA9F87 /* AboutViewController.swift */; };
 		05DD86B31B39F05C00EA9F87 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DD86B21B39F05C00EA9F87 /* OptionsViewController.swift */; };
 		05E511421B3B511400A2CF51 /* Pool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E511411B3B511400A2CF51 /* Pool.swift */; };
+		05E9270B1B45B11400FB7AAD /* AI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E9270A1B45B11400FB7AAD /* AI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		05DD86B01B39F03B00EA9F87 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		05DD86B21B39F05C00EA9F87 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		05E511411B3B511400A2CF51 /* Pool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pool.swift; sourceTree = "<group>"; };
+		05E9270A1B45B11400FB7AAD /* AI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				0552E6F41B3891D200486CC8 /* LaunchScreen.xib */,
 				0552E6E51B3891D200486CC8 /* Supporting Files */,
 				05E511411B3B511400A2CF51 /* Pool.swift */,
+				05E9270A1B45B11400FB7AAD /* AI.swift */,
 			);
 			path = Converge;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				0552E6EE1B3891D200486CC8 /* GameViewController.swift in Sources */,
 				05DD86B31B39F05C00EA9F87 /* OptionsViewController.swift in Sources */,
 				05DD86B11B39F03B00EA9F87 /* AboutViewController.swift in Sources */,
+				05E9270B1B45B11400FB7AAD /* AI.swift in Sources */,
 				05E511421B3B511400A2CF51 /* Pool.swift in Sources */,
 				0552E6E81B3891D200486CC8 /* AppDelegate.swift in Sources */,
 			);

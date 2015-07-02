@@ -26,11 +26,18 @@ extension SKNode {
 }
 
 class GameViewController: UIViewController {
-
+    var ai: AI_TYPE!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
+            if ai != nil {
+                scene.setAI(ai)
+            } else {
+                scene.setAI(AI_TYPE.GARBAGE)
+            }
+            
             // Configure the view.
             let skView = self.view as! SKView
             skView.showsFPS = true
@@ -42,12 +49,23 @@ class GameViewController: UIViewController {
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = .AspectFill
             
+            //set up notification so scene can get back to this view controller
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "goToMainMenu:", name: "gameOver", object: nil)
             skView.presentScene(scene)
         }
     }
-
+    
+    func setAI(type: AI_TYPE) {
+        ai = type
+    }
+    
+    func goToMainMenu(notification: NSNotification) {
+        print("goToMainMenu")
+        performSegueWithIdentifier("ToMainMenu", sender: nil)
+    }
+    
     override func shouldAutorotate() -> Bool {
-        return true
+        return false
     }
 
     override func supportedInterfaceOrientations() -> Int {
