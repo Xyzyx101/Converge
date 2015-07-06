@@ -172,6 +172,9 @@ class GameScene: SKScene {
             targetPool.incBit()
             bitCount--
             targetPool = targetPool.getNext()
+            if targetPool == pool {
+                targetPool = targetPool.getNext() // skip original pool
+            }
         }
         distributeLayer.setScale(1)
         checkScore(targetPool.getPrev())
