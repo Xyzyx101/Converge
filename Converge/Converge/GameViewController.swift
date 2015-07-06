@@ -35,7 +35,7 @@ class GameViewController: UIViewController {
             if ai != nil {
                 scene.setAI(ai)
             } else {
-                scene.setAI(AI_TYPE.MED)
+                scene.setAI(AI_TYPE.HARD)
             }
             
             // Configure the view.

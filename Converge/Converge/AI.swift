@@ -29,19 +29,37 @@ class AI {
         case .POTATO:
             return getPotatoMove(pools)
         case .EASY:
-            break
+            var doIPotato = Int(arc4random_uniform(5))
+            if doIPotato < 2 {
+                println("iDoPotato")
+                return getPotatoMove(pools)
+            } else {
+                aiBoard = AIBoard(realPools: pools, recurseDepth: 0)
+                var bestScore: Int = 0
+                let bestMove = aiBoard.getBestMove(&bestScore)
+                if bestMove == -1 {
+                    println("potato")
+                    return getPotatoMove(pools)
+                }
+                println(bestMove)	
+                return bestMove
+            }
         case .MED:
-            aiBoard = AIBoard(realPools: pools, recurseDepth: 0)
+            aiBoard = AIBoard(realPools: pools, recurseDepth: 1)
             var bestScore: Int = 0
             let bestMove = aiBoard.getBestMove(&bestScore)
             if bestMove == -1 {
-                println("potato")
                 return getPotatoMove(pools)
             }
-            println(bestMove)
             return bestMove
         case .HARD:
-            break
+            aiBoard = AIBoard(realPools: pools, recurseDepth: 5)
+            var bestScore: Int = 0
+            let bestMove = aiBoard.getBestMove(&bestScore)
+            if bestMove == -1 {
+                return getPotatoMove(pools)
+            }
+            return bestMove
         }
         return 0
     }
@@ -105,6 +123,10 @@ class AIBoard {
     
     func makeMove(poolIdx: Int) {
         var bitCount: Int = pools[poolIdx].value
+        if bitCount == 0 {
+            score = Int.min
+            return
+        }
         var originalPool = pools[poolIdx]
         originalPool.value = 0
         var targetPool: BoardNode = (pools[poolIdx].next)!
@@ -126,12 +148,12 @@ class AIBoard {
                 break
             }
         }
-        if !isPlayerTurn {
-            score *= -1
-        }
     }
     
     func evaluate() {
+        if score == Int.min {
+            return
+        }
         var first, last : Int
         if isPlayerTurn {
             first = 0
@@ -141,9 +163,6 @@ class AIBoard {
             last = 12
         }
         for (var i = first; i<last; ++i) {
-            //if pools[i].value == 0 {
-            //    continue
-            //}
             var newBoard = AIBoard(fakePools: self.pools, recurseDepth: self.recurseDepth - 1, isPlayerTurn: !isPlayerTurn)
             children.append(newBoard)
             newBoard.makeMove(i)
@@ -158,26 +177,26 @@ class AIBoard {
             prevBestScore += self.score
             return -1
         }
-        var bestScore: Int = 0
+        var bestScore: Int = Int.min
         var bestMove: Int = -1
         var evaluateScore = 0
         var evaluateBest = -1
         for var i = 0; i < children.count; ++i {
             evaluateScore = 0
             evaluateBest = children[i].getBestMove(&evaluateScore)
-            if isPlayerTurn {
-                if evaluateScore < bestScore {
-                    bestScore = evaluateBest
+            if evaluateScore > bestScore {
+                bestScore = evaluateScore
+                if isPlayerTurn {
                     bestMove = i
-                }
-            } else {
-                if evaluateScore > bestScore {
-                    bestScore = evaluateScore
+                } else {
                     bestMove = i + 6
                 }
             }
         }
-        prevBestScore += bestScore
+        if isPlayerTurn {
+            bestScore *= -1
+        }
+        prevBestScore = bestScore + self.score
         return bestMove
     }
 }
