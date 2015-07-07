@@ -34,36 +34,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Converge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ya7-Ih-bMm">
-                                <rect key="frame" x="45" y="211" width="312" height="149"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Converge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ya7-Ih-bMm">
+                                <rect key="frame" x="45" y="211" width="359" height="80"/>
                                 <fontDescription key="fontDescription" name="CFSpaceship-Regular" family="CF Spaceship" pointSize="80"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="right" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="raY-Qy-fkZ">
-                                <rect key="frame" x="383" y="176" width="107" height="30"/>
+                            <button opaque="NO" contentMode="right" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="raY-Qy-fkZ">
+                                <rect key="frame" x="387" y="176" width="99" height="31"/>
                                 <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="19"/>
                                 <state key="normal" title="Play"/>
                                 <connections>
                                     <segue destination="ud6-he-gLZ" kind="show" id="fMJ-DA-EgU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07D-ap-pd5">
-                                <rect key="frame" x="383" y="235" width="107" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07D-ap-pd5">
+                                <rect key="frame" x="387" y="236" width="99" height="27"/>
                                 <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="15"/>
                                 <state key="normal" title="Instructions">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbr-1r-v9N">
-                                <rect key="frame" x="383" y="285" width="107" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbr-1r-v9N">
+                                <rect key="frame" x="387" y="285" width="99" height="27"/>
                                 <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="15"/>
                                 <state key="normal" title="Options">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yV3-sx-PTU">
-                                <rect key="frame" x="383" y="342" width="107" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yV3-sx-PTU">
+                                <rect key="frame" x="387" y="342" width="99" height="27"/>
                                 <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="15"/>
                                 <state key="normal" title="Info">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,19 +72,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="kbr-1r-v9N" firstAttribute="top" secondItem="07D-ap-pd5" secondAttribute="bottom" constant="30" id="18d-GR-CJo"/>
-                            <constraint firstAttribute="centerX" secondItem="07D-ap-pd5" secondAttribute="centerX" multiplier="0.6" id="71Y-RJ-qN8"/>
+                            <constraint firstItem="kbr-1r-v9N" firstAttribute="top" secondItem="07D-ap-pd5" secondAttribute="bottom" constant="22" id="18d-GR-CJo"/>
+                            <constraint firstAttribute="centerX" secondItem="07D-ap-pd5" secondAttribute="centerX" multiplier="0.6" constant="38.100000000000023" id="71Y-RJ-qN8"/>
                             <constraint firstItem="07D-ap-pd5" firstAttribute="leading" secondItem="raY-Qy-fkZ" secondAttribute="leading" id="7E4-Ac-ltr"/>
                             <constraint firstItem="yV3-sx-PTU" firstAttribute="top" secondItem="kbr-1r-v9N" secondAttribute="bottom" constant="30" id="7ro-Ad-S2R"/>
-                            <constraint firstAttribute="centerX" secondItem="raY-Qy-fkZ" secondAttribute="centerX" multiplier="0.6" id="I68-8u-AXG"/>
+                            <constraint firstAttribute="centerX" secondItem="raY-Qy-fkZ" secondAttribute="centerX" multiplier="0.6" constant="38.100000000000023" id="I68-8u-AXG"/>
                             <constraint firstItem="07D-ap-pd5" firstAttribute="leading" secondItem="yV3-sx-PTU" secondAttribute="leading" id="J1f-1q-WUr"/>
-                            <constraint firstAttribute="centerX" secondItem="yV3-sx-PTU" secondAttribute="centerX" multiplier="0.6" id="Vrb-AH-85Q"/>
-                            <constraint firstAttribute="centerX" secondItem="Ya7-Ih-bMm" secondAttribute="centerX" multiplier="1.4" id="kra-ku-mJF"/>
-                            <constraint firstItem="07D-ap-pd5" firstAttribute="top" secondItem="raY-Qy-fkZ" secondAttribute="bottom" constant="30" id="lSL-xD-AAo"/>
-                            <constraint firstAttribute="centerY" secondItem="Ya7-Ih-bMm" secondAttribute="centerY" multiplier="1.3" id="nwn-K4-qud"/>
-                            <constraint firstAttribute="centerX" secondItem="kbr-1r-v9N" secondAttribute="centerX" multiplier="0.6" id="sGg-H3-bcf"/>
+                            <constraint firstAttribute="centerX" secondItem="yV3-sx-PTU" secondAttribute="centerX" multiplier="0.6" constant="38.100000000000023" id="Vrb-AH-85Q"/>
+                            <constraint firstAttribute="centerX" secondItem="Ya7-Ih-bMm" secondAttribute="centerX" multiplier="1.4" constant="-14.299999999999955" id="kra-ku-mJF"/>
+                            <constraint firstItem="07D-ap-pd5" firstAttribute="top" secondItem="raY-Qy-fkZ" secondAttribute="bottom" constant="29" id="lSL-xD-AAo"/>
+                            <constraint firstAttribute="centerY" secondItem="Ya7-Ih-bMm" secondAttribute="centerY" multiplier="1.3" constant="-26.300000000000011" id="nwn-K4-qud"/>
+                            <constraint firstAttribute="centerX" secondItem="kbr-1r-v9N" secondAttribute="centerX" multiplier="0.6" constant="38.100000000000023" id="sGg-H3-bcf"/>
                             <constraint firstItem="07D-ap-pd5" firstAttribute="leading" secondItem="kbr-1r-v9N" secondAttribute="leading" id="sHD-41-be1"/>
-                            <constraint firstAttribute="centerY" secondItem="raY-Qy-fkZ" secondAttribute="centerY" multiplier="1.5" id="wmK-Va-ARg"/>
+                            <constraint firstAttribute="centerY" secondItem="raY-Qy-fkZ" secondAttribute="centerY" multiplier="1.5" constant="13.5" id="wmK-Va-ARg"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -198,6 +198,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DZF-7P-jNG"/>
+        <segue reference="68o-z6-VjS"/>
     </inferredMetricsTieBreakers>
 </document>
