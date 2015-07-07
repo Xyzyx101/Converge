@@ -61,7 +61,6 @@ class AI {
             }
             return bestMove
         }
-        return 0
     }
     
     func getPotatoMove(pools: [Pool]) -> Int {
