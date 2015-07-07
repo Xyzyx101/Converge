@@ -1,25 +1,24 @@
 //
-//  AboutViewController.swift
+//  InstructionViewController.swift
 //  Converge
 //
-//  Created by Andrew Perrault on 2015-06-23.
+//  Created by Andrew Perrault on 2015-07-07.
 //  Copyright (c) 2015 Andrew Perrault. All rights reserved.
 //
 
 import UIKit
 
-class AboutViewController: UIViewController {
+class InstructionViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let htmlFile = NSBundle.mainBundle().pathForResource("about", ofType: "html") {
+        if let htmlFile = NSBundle.mainBundle().pathForResource("instructions", ofType: "html") {
             let htmlData = NSData(contentsOfFile: htmlFile)
             let baseURL = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath)
             webView.loadData(htmlData, MIMEType: "text/html", textEncodingName: "UTF-8", baseURL: baseURL)
-            webView.scrollView.scrollEnabled = true
         }
     }
 

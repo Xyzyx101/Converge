@@ -20,9 +20,9 @@ class GameScene: SKScene {
     var playerTurn = true
     var ai: AI!
     
-    let label = SKLabelNode(fontNamed: "Arial")
-    let playerScoreLabel = SKLabelNode(fontNamed: "Arial")
-    let aiScoreLabel = SKLabelNode(fontNamed: "Arial")
+    let label = SKLabelNode(fontNamed: "CFSpaceship-Regular")
+    let playerScoreLabel = SKLabelNode(fontNamed: "Orbitron-Regular")
+    let aiScoreLabel = SKLabelNode(fontNamed: "Orbitron-Regular")
     
     enum PLAYER {
         case HUMAN

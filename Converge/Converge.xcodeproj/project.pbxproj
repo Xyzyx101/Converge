@@ -23,6 +23,9 @@
 		05E3BF811B4C0A8100C98042 /* Orbitron-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05E3BF7F1B4C092C00C98042 /* Orbitron-Regular.ttf */; };
 		05E511421B3B511400A2CF51 /* Pool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E511411B3B511400A2CF51 /* Pool.swift */; };
 		05E9270B1B45B11400FB7AAD /* AI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E9270A1B45B11400FB7AAD /* AI.swift */; };
+		05EAF3621B4C569C00D6705A /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAF3611B4C569C00D6705A /* InstructionViewController.swift */; };
+		05EAF3651B4C5A5300D6705A /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 05EAF3641B4C5A5300D6705A /* about.html */; };
+		05EAF3671B4C5A5A00D6705A /* instructions.html in Resources */ = {isa = PBXBuildFile; fileRef = 05EAF3661B4C5A5A00D6705A /* instructions.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,9 @@
 		05E3BF7F1B4C092C00C98042 /* Orbitron-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Orbitron-Regular.ttf"; sourceTree = "<group>"; };
 		05E511411B3B511400A2CF51 /* Pool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pool.swift; sourceTree = "<group>"; };
 		05E9270A1B45B11400FB7AAD /* AI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AI.swift; sourceTree = "<group>"; };
+		05EAF3611B4C569C00D6705A /* InstructionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
+		05EAF3641B4C5A5300D6705A /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		05EAF3661B4C5A5A00D6705A /* instructions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = instructions.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,7 @@
 		0552E6E41B3891D200486CC8 /* Converge */ = {
 			isa = PBXGroup;
 			children = (
+				05EAF3631B4C5A4200D6705A /* html */,
 				05E3BF7D1B4C089700C98042 /* Font */,
 				05E511401B3B419000A2CF51 /* Art */,
 				0552E6E71B3891D200486CC8 /* AppDelegate.swift */,
@@ -105,6 +112,7 @@
 				054BD8241B4BE72D009C586E /* AISelectViewController.swift */,
 				0552E6ED1B3891D200486CC8 /* GameViewController.swift */,
 				05DD86AC1B39E26800EA9F87 /* MainMenuViewController.swift */,
+				05EAF3611B4C569C00D6705A /* InstructionViewController.swift */,
 				05DD86B01B39F03B00EA9F87 /* AboutViewController.swift */,
 				05DD86B21B39F05C00EA9F87 /* OptionsViewController.swift */,
 				0552E6F21B3891D200486CC8 /* Images.xcassets */,
@@ -156,6 +164,15 @@
 			children = (
 			);
 			name = Art;
+			sourceTree = "<group>";
+		};
+		05EAF3631B4C5A4200D6705A /* html */ = {
+			isa = PBXGroup;
+			children = (
+				05EAF3641B4C5A5300D6705A /* about.html */,
+				05EAF3661B4C5A5A00D6705A /* instructions.html */,
+			);
+			name = html;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,9 +256,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				05E3BF811B4C0A8100C98042 /* Orbitron-Regular.ttf in Resources */,
+				05EAF3671B4C5A5A00D6705A /* instructions.html in Resources */,
 				05E3BF801B4C0A7B00C98042 /* CFSpaceship-Regular.ttf in Resources */,
 				0552E6F61B3891D200486CC8 /* LaunchScreen.xib in Resources */,
 				0552E6F31B3891D200486CC8 /* Images.xcassets in Resources */,
+				05EAF3651B4C5A5300D6705A /* about.html in Resources */,
 				0552E6EA1B3891D200486CC8 /* GameScene.sks in Resources */,
 				05E3BF7C1B4BFDE000C98042 /* Main.storyboard in Resources */,
 			);
@@ -266,6 +285,7 @@
 				0552E6EC1B3891D200486CC8 /* GameScene.swift in Sources */,
 				0552E6EE1B3891D200486CC8 /* GameViewController.swift in Sources */,
 				05DD86B31B39F05C00EA9F87 /* OptionsViewController.swift in Sources */,
+				05EAF3621B4C569C00D6705A /* InstructionViewController.swift in Sources */,
 				05DD86B11B39F03B00EA9F87 /* AboutViewController.swift in Sources */,
 				05E9270B1B45B11400FB7AAD /* AI.swift in Sources */,
 				05E511421B3B511400A2CF51 /* Pool.swift in Sources */,

@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Qts-zv-YoJ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -19,9 +21,66 @@
             <string>Orbitron-Regular</string>
             <string>Orbitron-Regular</string>
             <string>Orbitron-Regular</string>
+            <string>Orbitron-Regular</string>
+            <string>Orbitron-Regular</string>
+            <string>Orbitron-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
+        <!--InstructionsScreen-->
+        <scene sceneID="3jy-9N-ddo">
+            <objects>
+                <viewController title="InstructionsScreen" id="Txs-la-8y9" customClass="InstructionViewController" customModule="Converge" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9Tt-OK-LSp"/>
+                        <viewControllerLayoutGuide type="bottom" id="Nd5-v6-z8j"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fxs-q1-Ht1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9b4-S7-YDv">
+                                <rect key="frame" x="193" y="554" width="215" height="31"/>
+                                <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="19"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="Return to Main Menu">
+                                    <color key="titleColor" red="0.080279938876628876" green="0.29409134387969971" blue="0.6002921462059021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.29768306016921997" green="0.58164620399475098" blue="0.98802214860916138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Qts-zv-YoJ" kind="presentation" id="4fs-SR-rbw"/>
+                                </connections>
+                            </button>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B6P-gQ-Af8">
+                                <rect key="frame" x="36" y="20" width="528" height="514"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Txs-la-8y9" id="85q-ee-acT"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.52187460660934448" green="0.61003571748733521" blue="0.73766422271728516" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="9b4-S7-YDv" firstAttribute="top" secondItem="B6P-gQ-Af8" secondAttribute="bottom" constant="20" id="1JV-Ep-3jC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="B6P-gQ-Af8" secondAttribute="trailing" constant="20" id="6jQ-7B-3mz"/>
+                            <constraint firstAttribute="centerX" secondItem="9b4-S7-YDv" secondAttribute="centerX" id="HXz-Z3-UHF"/>
+                            <constraint firstItem="Nd5-v6-z8j" firstAttribute="top" secondItem="9b4-S7-YDv" secondAttribute="bottom" constant="15" id="Ms0-z4-xW7"/>
+                            <constraint firstItem="B6P-gQ-Af8" firstAttribute="top" secondItem="9Tt-OK-LSp" secondAttribute="bottom" constant="20" id="UDu-Po-cWE"/>
+                            <constraint firstItem="B6P-gQ-Af8" firstAttribute="leading" secondItem="fxs-q1-Ht1" secondAttribute="leadingMargin" constant="20" id="dOm-rN-EfP"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="webView" destination="B6P-gQ-Af8" id="HF6-4F-xn0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bek-bc-IWv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="423" y="1314"/>
+        </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="Czy-9a-5fz">
             <objects>
@@ -34,55 +93,81 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Converge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ya7-Ih-bMm">
-                                <rect key="frame" x="45" y="211" width="359" height="80"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Converge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="50" translatesAutoresizingMaskIntoConstraints="NO" id="Ya7-Ih-bMm">
+                                <rect key="frame" x="23" y="215" width="324" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Ya7-Ih-bMm" secondAttribute="height" multiplier="181:40" id="pLj-Fl-iFT"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="CFSpaceship-Regular" family="CF Spaceship" pointSize="80"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
+                                <color key="textColor" red="0.88993853330612183" green="0.092189334332942963" blue="0.032090064138174057" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="highlightedColor" red="0.88993853330612183" green="0.092189334332942963" blue="0.032090064138174057" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="shadowColor" red="0.88993853330612183" green="0.092189334332942963" blue="0.032090064138174057" alpha="0.46031250000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="3" height="3"/>
                             </label>
                             <button opaque="NO" contentMode="right" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="raY-Qy-fkZ">
-                                <rect key="frame" x="387" y="176" width="99" height="31"/>
+                                <rect key="frame" x="387" y="176" width="726" height="31"/>
                                 <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="19"/>
-                                <state key="normal" title="Play"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" red="0.080279938876628876" green="0.29409134387969971" blue="0.6002921462059021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.29768306016921997" green="0.58164620399475098" blue="0.98802214860916138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
-                                    <segue destination="ud6-he-gLZ" kind="show" id="fMJ-DA-EgU"/>
+                                    <segue destination="ud6-he-gLZ" kind="presentation" id="fMJ-DA-EgU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07D-ap-pd5">
                                 <rect key="frame" x="387" y="236" width="99" height="27"/>
                                 <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="15"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Instructions">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.080279938876628876" green="0.29409134387969971" blue="0.6002921462059021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.29768306016921997" green="0.58164620399475098" blue="0.98802214860916138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Txs-la-8y9" kind="presentation" id="1FY-ms-3gy"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbr-1r-v9N">
-                                <rect key="frame" x="387" y="285" width="99" height="27"/>
+                                <rect key="frame" x="387" y="285" width="83" height="27"/>
                                 <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="15"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Options">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.080279938876628876" green="0.29409134387969971" blue="0.6002921462059021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.29768306016921997" green="0.58164620399475098" blue="0.98802214860916138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Rrk-8Y-t6w" kind="presentation" id="J3x-Fv-G6k"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yV3-sx-PTU">
                                 <rect key="frame" x="387" y="342" width="99" height="27"/>
                                 <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="15"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Info">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.080279938876628876" green="0.29409134387969971" blue="0.6002921462059021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.29768306016921997" green="0.58164620399475098" blue="0.98802214860916138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="iZy-EB-HGR" kind="presentation" id="wHD-FD-Hv9"/>
+                                </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.52187460660934448" green="0.61003571748733521" blue="0.73766422271728516" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="kbr-1r-v9N" firstAttribute="top" secondItem="07D-ap-pd5" secondAttribute="bottom" constant="22" id="18d-GR-CJo"/>
                             <constraint firstAttribute="centerX" secondItem="07D-ap-pd5" secondAttribute="centerX" multiplier="0.6" constant="38.100000000000023" id="71Y-RJ-qN8"/>
                             <constraint firstItem="07D-ap-pd5" firstAttribute="leading" secondItem="raY-Qy-fkZ" secondAttribute="leading" id="7E4-Ac-ltr"/>
                             <constraint firstItem="yV3-sx-PTU" firstAttribute="top" secondItem="kbr-1r-v9N" secondAttribute="bottom" constant="30" id="7ro-Ad-S2R"/>
-                            <constraint firstAttribute="centerX" secondItem="raY-Qy-fkZ" secondAttribute="centerX" multiplier="0.6" constant="38.100000000000023" id="I68-8u-AXG"/>
+                            <constraint firstAttribute="centerX" secondItem="raY-Qy-fkZ" secondAttribute="centerX" multiplier="0.4" priority="900" id="I68-8u-AXG"/>
                             <constraint firstItem="07D-ap-pd5" firstAttribute="leading" secondItem="yV3-sx-PTU" secondAttribute="leading" id="J1f-1q-WUr"/>
+                            <constraint firstItem="kbr-1r-v9N" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ya7-Ih-bMm" secondAttribute="trailing" constant="40" id="NJh-7j-Q6N"/>
                             <constraint firstAttribute="centerX" secondItem="yV3-sx-PTU" secondAttribute="centerX" multiplier="0.6" constant="38.100000000000023" id="Vrb-AH-85Q"/>
-                            <constraint firstAttribute="centerX" secondItem="Ya7-Ih-bMm" secondAttribute="centerX" multiplier="1.4" constant="-14.299999999999955" id="kra-ku-mJF"/>
+                            <constraint firstAttribute="trailing" secondItem="07D-ap-pd5" secondAttribute="trailing" constant="114" id="ZlP-me-JFz"/>
+                            <constraint firstAttribute="centerX" secondItem="Ya7-Ih-bMm" secondAttribute="centerX" multiplier="1.7" constant="-14.299999999999955" id="kra-ku-mJF"/>
                             <constraint firstItem="07D-ap-pd5" firstAttribute="top" secondItem="raY-Qy-fkZ" secondAttribute="bottom" constant="29" id="lSL-xD-AAo"/>
                             <constraint firstAttribute="centerY" secondItem="Ya7-Ih-bMm" secondAttribute="centerY" multiplier="1.3" constant="-26.300000000000011" id="nwn-K4-qud"/>
-                            <constraint firstAttribute="centerX" secondItem="kbr-1r-v9N" secondAttribute="centerX" multiplier="0.6" constant="38.100000000000023" id="sGg-H3-bcf"/>
+                            <constraint firstAttribute="centerX" secondItem="kbr-1r-v9N" secondAttribute="centerX" multiplier="0.7" id="sGg-H3-bcf"/>
                             <constraint firstItem="07D-ap-pd5" firstAttribute="leading" secondItem="kbr-1r-v9N" secondAttribute="leading" id="sHD-41-be1"/>
                             <constraint firstAttribute="centerY" secondItem="raY-Qy-fkZ" secondAttribute="centerY" multiplier="1.5" constant="13.5" id="wmK-Va-ARg"/>
                         </constraints>
@@ -96,6 +181,46 @@
             </objects>
             <point key="canvasLocation" x="423" y="501"/>
         </scene>
+        <!--OptionsScreen-->
+        <scene sceneID="fKf-Cb-JXI">
+            <objects>
+                <viewController title="OptionsScreen" id="Rrk-8Y-t6w" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Je1-Z3-ZPF"/>
+                        <viewControllerLayoutGuide type="bottom" id="8GS-4o-RIQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Fqq-51-NyW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ulc-j5-fpu">
+                                <rect key="frame" x="187" y="553" width="226" height="32"/>
+                                <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="20"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="Return to Main Menu">
+                                    <color key="titleColor" red="0.080279938876628876" green="0.29409134387969971" blue="0.6002921462059021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.29768306016921997" green="0.58164620399475098" blue="0.98802214860916138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Qts-zv-YoJ" kind="presentation" id="9B6-xt-XFl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.52187460660934448" green="0.61003571748733521" blue="0.73766422271728516" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="8GS-4o-RIQ" firstAttribute="top" secondItem="Ulc-j5-fpu" secondAttribute="bottom" constant="15" id="JCL-Rd-jSx"/>
+                            <constraint firstAttribute="centerX" secondItem="Ulc-j5-fpu" secondAttribute="centerX" id="oT4-80-Fc4"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dpp-iT-IPD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="423" y="-233"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="QNd-ds-tgi">
             <objects>
@@ -108,23 +233,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lz0-UB-5IF">
-                                <rect key="frame" x="151" y="161" width="105" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lz0-UB-5IF">
+                                <rect key="frame" x="31" y="15" width="87" height="27"/>
                                 <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="15"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Main Menu">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.080279938876628876" green="0.29409134387969971" blue="0.6002921462059021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.29768306016921997" green="0.58164620399475098" blue="0.98802214860916138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Qts-zv-YoJ" kind="show" identifier="ToMainMenu" id="Cd2-5d-qTl"/>
+                                    <segue destination="Qts-zv-YoJ" kind="presentation" identifier="ToMainMenu" id="Cd2-5d-qTl"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.52187460660934448" green="0.61003571748733521" blue="0.73766422271728516" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="lz0-UB-5IF" firstAttribute="leading" secondItem="aQg-im-3FJ" secondAttribute="leadingMargin" constant="15" id="Z2l-7r-Mow"/>
+                            <constraint firstItem="lz0-UB-5IF" firstAttribute="top" secondItem="K0M-V2-Kck" secondAttribute="bottom" constant="15" id="nhl-MH-FXC"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ku-0i-KjU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1149" y="452"/>
+            <point key="canvasLocation" x="2085" y="409"/>
         </scene>
         <!--Select View Controller-->
         <scene sceneID="p0G-FE-SID">
@@ -138,54 +269,83 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYR-c3-xJY">
-                                <rect key="frame" x="137" y="250" width="62" height="30"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYR-c3-xJY">
+                                <rect key="frame" x="84" y="320" width="100" height="27"/>
                                 <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="15"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Potato">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="0.96910995244979858" blue="0.68006151914596558" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="1" green="0.92650958179999998" blue="0.43634496659999999" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="s46-iM-D8b" kind="show" identifier="potatoSegue" id="68o-z6-VjS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LmQ-wD-wcR">
-                                <rect key="frame" x="227" y="250" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LmQ-wD-wcR">
+                                <rect key="frame" x="204" y="320" width="100" height="27"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="15"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Easy">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.70359653229999997" green="0.81187021729999997" blue="0.96941167120000005" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" red="0.70359653229999997" green="0.81187021729999997" blue="0.96941167120000005" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="s46-iM-D8b" kind="show" identifier="easySegue" id="qsc-ss-iaA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uWj-jr-bJc">
-                                <rect key="frame" x="303" y="250" width="65" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uWj-jr-bJc">
+                                <rect key="frame" x="324" y="320" width="99" height="27"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="15"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Medium">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.99737972021102905" green="0.69802606105804443" blue="0.68093580007553101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.99737972021102905" green="0.69802606105804443" blue="0.68093580007553101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="s46-iM-D8b" kind="show" identifier="mediumSegue" id="Oyb-fq-tt8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3e2-8D-IJ1">
-                                <rect key="frame" x="406" y="250" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3e2-8D-IJ1">
+                                <rect key="frame" x="443" y="320" width="100" height="27"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="15"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Hard">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.88993853330612183" green="0.092189334332942963" blue="0.032090064138174057" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.88993853330612183" green="0.092189334332942963" blue="0.032090064138174057" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="s46-iM-D8b" kind="show" identifier="hardSegue" id="DZF-7P-jNG"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Computer Difficulty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsy-cH-ovM">
-                                <rect key="frame" x="179" y="135" width="286" height="21"/>
-                                <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select Computer Difficulty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsy-cH-ovM">
+                                <rect key="frame" x="129" y="219" width="343" height="24"/>
+                                <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="24"/>
+                                <color key="textColor" red="0.080279938876628876" green="0.29409134387969971" blue="0.6002921462059021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.29768306016921997" green="0.58164620399475098" blue="0.98802214860916138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="1" height="1"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.52187460660934448" green="0.61003571748733521" blue="0.73766422271728516" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="uWj-jr-bJc" firstAttribute="leading" secondItem="LmQ-wD-wcR" secondAttribute="trailing" constant="20" id="42I-3x-8lp"/>
+                            <constraint firstAttribute="centerX" secondItem="Nsy-cH-ovM" secondAttribute="centerX" id="89P-20-sSW"/>
+                            <constraint firstItem="ZYR-c3-xJY" firstAttribute="width" secondItem="3e2-8D-IJ1" secondAttribute="width" id="Amo-sU-moh"/>
+                            <constraint firstItem="3e2-8D-IJ1" firstAttribute="leading" secondItem="uWj-jr-bJc" secondAttribute="trailing" constant="20" id="D6n-CA-Tag"/>
+                            <constraint firstAttribute="centerY" secondItem="Nsy-cH-ovM" secondAttribute="centerY" multiplier="1.3" id="Jgx-A9-nZr"/>
+                            <constraint firstItem="LmQ-wD-wcR" firstAttribute="leading" secondItem="ZYR-c3-xJY" secondAttribute="trailing" constant="20" id="SRz-ga-bkA"/>
+                            <constraint firstItem="ZYR-c3-xJY" firstAttribute="width" secondItem="LmQ-wD-wcR" secondAttribute="width" id="ZNE-La-zLW"/>
+                            <constraint firstAttribute="centerY" secondItem="uWj-jr-bJc" secondAttribute="centerY" multiplier="0.9" id="a4C-qA-Tos"/>
+                            <constraint firstItem="ZYR-c3-xJY" firstAttribute="leading" secondItem="177-VJ-gQ4" secondAttribute="leadingMargin" constant="68" id="c5r-oq-iob"/>
+                            <constraint firstItem="ZYR-c3-xJY" firstAttribute="width" secondItem="uWj-jr-bJc" secondAttribute="width" id="ee9-vz-q76"/>
+                            <constraint firstAttribute="centerY" secondItem="LmQ-wD-wcR" secondAttribute="centerY" multiplier="0.9" id="fpm-pp-aFd"/>
+                            <constraint firstAttribute="centerY" secondItem="3e2-8D-IJ1" secondAttribute="centerY" multiplier="0.9" id="sUn-tK-ZRY"/>
+                            <constraint firstAttribute="centerY" secondItem="ZYR-c3-xJY" secondAttribute="centerY" multiplier="0.9" id="tCU-5q-IO8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3e2-8D-IJ1" secondAttribute="trailing" constant="41" id="xdF-Si-DdU"/>
+                        </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -194,10 +354,62 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mgi-3p-mfh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="883" y="840"/>
+            <point key="canvasLocation" x="1209" y="501"/>
+        </scene>
+        <!--About Screen-->
+        <scene sceneID="ci0-A4-MBl">
+            <objects>
+                <viewController title="About Screen" id="iZy-EB-HGR" customClass="AboutViewController" customModule="Converge" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UY8-rX-dbs"/>
+                        <viewControllerLayoutGuide type="bottom" id="muD-Vt-U5C"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JVS-1I-9Qs">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HL2-tM-kGI">
+                                <rect key="frame" x="187" y="553" width="226" height="32"/>
+                                <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="20"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="Return to Main Menu">
+                                    <color key="titleColor" red="0.080279938876628876" green="0.29409134387969971" blue="0.6002921462059021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.29768306016921997" green="0.58164620399475098" blue="0.98802214860916138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Qts-zv-YoJ" kind="presentation" id="bB4-Km-l1E"/>
+                                </connections>
+                            </button>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5q9-X5-yLc">
+                                <rect key="frame" x="36" y="20" width="528" height="513"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.52187460660934448" green="0.61003571748733521" blue="0.73766422271728516" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="5q9-X5-yLc" firstAttribute="leading" secondItem="JVS-1I-9Qs" secondAttribute="leadingMargin" constant="20" id="CKu-uH-5oH"/>
+                            <constraint firstItem="5q9-X5-yLc" firstAttribute="top" secondItem="UY8-rX-dbs" secondAttribute="bottom" constant="20" id="PCa-l9-imk"/>
+                            <constraint firstAttribute="centerX" secondItem="HL2-tM-kGI" secondAttribute="centerX" id="a8e-Qy-qdW"/>
+                            <constraint firstItem="HL2-tM-kGI" firstAttribute="top" secondItem="5q9-X5-yLc" secondAttribute="bottom" constant="20" id="dT9-2H-0t7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5q9-X5-yLc" secondAttribute="trailing" constant="20" id="eLT-nI-DYc"/>
+                            <constraint firstItem="muD-Vt-U5C" firstAttribute="top" secondItem="HL2-tM-kGI" secondAttribute="bottom" constant="15" id="z2I-sw-svH"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="webView" destination="5q9-X5-yLc" id="Wjo-Mo-vA1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9bb-rs-ynX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1152" y="1314"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="68o-z6-VjS"/>
+        <segue reference="Cd2-5d-qTl"/>
+        <segue reference="DZF-7P-jNG"/>
     </inferredMetricsTieBreakers>
 </document>
