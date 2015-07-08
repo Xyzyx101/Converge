@@ -320,8 +320,8 @@
                                     <segue destination="s46-iM-D8b" kind="show" identifier="hardSegue" id="DZF-7P-jNG"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select Computer Difficulty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsy-cH-ovM">
-                                <rect key="frame" x="129" y="219" width="343" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Computer Difficulty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsy-cH-ovM">
+                                <rect key="frame" x="128" y="219" width="344" height="25"/>
                                 <fontDescription key="fontDescription" name="Orbitron-Regular" family="Orbitron" pointSize="24"/>
                                 <color key="textColor" red="0.080279938876628876" green="0.29409134387969971" blue="0.6002921462059021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -409,7 +409,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Cd2-5d-qTl"/>
+        <segue reference="4fs-SR-rbw"/>
         <segue reference="DZF-7P-jNG"/>
     </inferredMetricsTieBreakers>
 </document>

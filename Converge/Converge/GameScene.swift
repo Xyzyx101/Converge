@@ -23,6 +23,7 @@ class GameScene: SKScene {
     let label = SKLabelNode(fontNamed: "CFSpaceship-Regular")
     let playerScoreLabel = SKLabelNode(fontNamed: "Orbitron-Regular")
     let aiScoreLabel = SKLabelNode(fontNamed: "Orbitron-Regular")
+    var poolOffset = CGPoint.zeroPoint
     
     enum PLAYER {
         case HUMAN
@@ -115,6 +116,8 @@ class GameScene: SKScene {
         let borderTB = 350 / size.height * frame.height
         let bitSize = 60 / size.height * frame.height
         
+        poolOffset = CGPoint(x:poolWidth * 0.5, y:poolHeight * 0.5)
+        
         aiScoreLabel.position = CGPoint(x: frame.width - borderLR, y: frame.height - (borderTB * 3 / 4 ))
         playerScoreLabel.position = CGPoint(x: borderLR, y: borderTB * 3 / 4)
         
@@ -160,12 +163,19 @@ class GameScene: SKScene {
     
     func distribute(pool: Pool) {
         var bitCount: Int = pool.children.count
-        distributeLayer.position = pool.position
-        distributeLayer.setScale(1.25)
+        
+        distributeLayer.position = CGPoint(x : pool.position.x + poolOffset.x, y: pool.position.y + poolOffset.y)
+        
         for node in pool.children {
+            var otherNode = node as! SKNode
+            var fuckSwift = pool.convertPoint(node.position, toNode: distributeLayer)
+            otherNode.position = fuckSwift
             node.removeFromParent()
-            //distributeLayer.addChild(node as! SKNode)
+            distributeLayer.addChild(node as! SKNode)
         }
+        var choosePoolAction = SKAction.rotateByAngle(CGFloat(360 * M_PI / 180.0), duration: 1)
+        distributeLayer.runAction(choosePoolAction)
+        sleep(1)
         pool.setBit(0)
         var targetPool = pool.getNext()
         while(bitCount > 0) {

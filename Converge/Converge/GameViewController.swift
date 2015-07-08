@@ -60,7 +60,6 @@ class GameViewController: UIViewController {
     }
     
     func goToMainMenu(notification: NSNotification) {
-        print("goToMainMenu")
         performSegueWithIdentifier("ToMainMenu", sender: nil)
     }
     

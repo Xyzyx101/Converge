@@ -106,6 +106,8 @@
 				05EAF3631B4C5A4200D6705A /* html */,
 				05E3BF7D1B4C089700C98042 /* Font */,
 				05E511401B3B419000A2CF51 /* Art */,
+				05E9270A1B45B11400FB7AAD /* AI.swift */,
+				05E511411B3B511400A2CF51 /* Pool.swift */,
 				0552E6E71B3891D200486CC8 /* AppDelegate.swift */,
 				0552E6E91B3891D200486CC8 /* GameScene.sks */,
 				0552E6EB1B3891D200486CC8 /* GameScene.swift */,
@@ -118,8 +120,6 @@
 				0552E6F21B3891D200486CC8 /* Images.xcassets */,
 				0552E6F41B3891D200486CC8 /* LaunchScreen.xib */,
 				0552E6E51B3891D200486CC8 /* Supporting Files */,
-				05E511411B3B511400A2CF51 /* Pool.swift */,
-				05E9270A1B45B11400FB7AAD /* AI.swift */,
 				05E3BF7B1B4BFDE000C98042 /* Main.storyboard */,
 			);
 			path = Converge;
