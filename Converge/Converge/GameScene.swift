@@ -45,13 +45,14 @@ class GameScene: SKScene {
         poolLayer.zPosition = 100
         self.addChild(poolLayer)
         
+        distributeLayer.zPosition = 200
+        self.addChild(distributeLayer)
+        
         labelLayer.zPosition = 1000
         self.addChild(labelLayer)
         
         buildBoard()
         
-        distributeLayer.zPosition = 200
-        self.addChild(distributeLayer)
         nextTurn(PLAYER.HUMAN)
     }
     
@@ -184,7 +185,12 @@ class GameScene: SKScene {
             node.removeFromParent()
             distributeLayer.addChild(node as! SKNode)
         }
-        var choosePoolAction = SKAction.rotateByAngle(CGFloat(360 * M_PI / 180.0), duration: 1)
+        var choosePoolAction = SKAction.group([
+                SKAction.repeatActionForever(
+                    SKAction.rotateByAngle(CGFloat(360 * M_PI / 180.0), duration: 0.5)
+                    ),
+                SKAction.scaleTo(1.5, duration: 0.2)
+            ])
         distributeLayer.runAction(choosePoolAction)
         
         pool.setBit(0)
@@ -192,8 +198,31 @@ class GameScene: SKScene {
         var animCount = bitCount
         var targetPool = pool.getNext()
         while(bitCount > 0) {
-            completeBits++
-            targetPool.incBit()
+            var targetCopy = targetPool
+            //targetCopy.position =
+            var bit = distributeLayer.children[bitCount - 1] as! SKSpriteNode
+            var bitAction = SKAction.sequence(
+                [
+                    SKAction.waitForDuration(0.3 * Double(animCount - bitCount)),
+                    SKAction.scaleTo(1.5, duration: 0),
+                    SKAction.runBlock({
+                        let newPos = CGPoint(x: bit.position.x + self.distributeLayer.position.x ,
+                                y: bit.position.y + self.distributeLayer.position.y)
+                        bit.position = newPos
+                        bit.removeFromParent()
+                        self.poolLayer.addChild(bit)
+                    }),
+                    SKAction.group([
+                        SKAction.moveTo(CGPoint(x : targetCopy.position.x + poolOffset.x, y: targetCopy.position.y + poolOffset.y), duration: 0.5),
+                        SKAction.scaleTo(1.0, duration: 0.75)
+                    ]),
+                    SKAction.runBlock({
+                        completeBits++
+                        targetCopy.incBit()
+                    }),
+                    SKAction.removeFromParent()
+                ])
+            bit.runAction(bitAction)
             bitCount--
             targetPool = targetPool.getNext()
             if targetPool == pool {
@@ -202,14 +231,18 @@ class GameScene: SKScene {
         }
         
         var animCompleteAction = SKAction.repeatActionForever(
-            SKAction.runBlock({
-                if completeBits >= animCount {
-                    self.distributeLayer.zRotation = 0
-                    self.distributeLayer.setScale(1)
-                    self.distributeLayer.removeAllActions()
-                    self.checkScore(targetPool.getPrev())
-                }
-            })
+            SKAction.sequence([
+                SKAction.runBlock({
+                    if completeBits >= animCount {
+                        self.distributeLayer.zRotation = 0
+                        self.distributeLayer.setScale(1)
+                        self.distributeLayer.removeAllActions()
+                        self.distributeLayer.removeAllChildren()
+                        self.checkScore(targetPool.getPrev())
+                    }
+                }),
+                SKAction.waitForDuration(0)]
+            )
         )
         distributeLayer.runAction(animCompleteAction)
     }
@@ -231,6 +264,7 @@ class GameScene: SKScene {
                 AIScore += lastPool.getBit()
                 aiScoreLabel.text = "AI: " + String(AIScore)
             }
+            
             lastPool.setBit(0)
             lastPool = lastPool.getPrev()
         }
