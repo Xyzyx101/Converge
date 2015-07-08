@@ -249,6 +249,7 @@ class GameScene: SKScene {
     
     func checkScore(var lastPool: Pool) {
         readyForNextTurn = true
+        var targetPos = CGPoint.zeroPoint
         while(mayScore(lastPool.getBit())) {
             switch currentPlayer {
             case .HUMAN:
@@ -257,14 +258,26 @@ class GameScene: SKScene {
                 }
                 playerScore += lastPool.getBit()
                 playerScoreLabel.text = "You: " + String(playerScore)
+                targetPos = playerScoreLabel.position
             case .AI:
                 if (!lastPool.isPlayerOwned()) {
                     return
                 }
                 AIScore += lastPool.getBit()
                 aiScoreLabel.text = "AI: " + String(AIScore)
+                targetPos = aiScoreLabel.position
             }
-            
+            for node in lastPool.children {
+                var otherNode = node as! SKNode
+                otherNode.position = lastPool.convertPoint(node.position, toNode: labelLayer)
+                node.removeFromParent()
+                labelLayer.addChild(otherNode)
+                let scoreAction = SKAction.sequence([
+                    SKAction.moveTo(targetPos, duration: 0.3),
+                    SKAction.removeFromParent()
+                    ])
+                otherNode.runAction(scoreAction)
+            }
             lastPool.setBit(0)
             lastPool = lastPool.getPrev()
         }
