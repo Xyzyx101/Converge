@@ -31,14 +31,12 @@ class AI {
         case .EASY:
             var doIPotato = Int(arc4random_uniform(5))
             if doIPotato < 2 {
-                println("iDoPotato")
                 return getPotatoMove(pools)
             } else {
                 aiBoard = AIBoard(realPools: pools, recurseDepth: 0)
                 var bestScore: Int = 0
                 let bestMove = aiBoard.getBestMove(&bestScore)
                 if bestMove == -1 {
-                    println("potato")
                     return getPotatoMove(pools)
                 }
                 println(bestMove)	
@@ -192,6 +190,12 @@ class AIBoard {
                 }
             }
         }
+        
+        // This case should only happen when the board would be cleared resulting in a win
+        if bestScore == Int.min {
+            bestScore = 24
+        }
+        
         if isPlayerTurn {
             bestScore *= -1
         }

@@ -99,6 +99,45 @@ class GameScene: SKScene {
     }
     
     func nextTurn(newTurn: PLAYER) {
+        // Check if there are no available moves and end the game
+        var totalBits = 0
+        switch newTurn {
+        case .HUMAN:
+            for i in 0...5 {
+                totalBits = totalBits + pools[i].getBit()
+            }
+            if totalBits == 0 {
+                playerWon = true
+                gameOver = true
+                readyForNextTurn = false
+                displayGameOverMessage()
+                for i in 6...11 {
+                    animateScore(pools[i], targetPoint: playerScoreLabel.position)
+                    playerScore += pools[i].getBit()
+                    playerScoreLabel.text = "You: " + String(playerScore)
+                    pools[i].setBit(0)
+                }
+                return
+            }
+        case .AI:
+            for i in 6...11 {
+                totalBits = totalBits + pools[i].getBit()
+            }
+            if totalBits == 0 {
+                playerWon = false
+                gameOver = true
+                readyForNextTurn = false
+                displayGameOverMessage()
+                for i in 0...5 {
+                    animateScore(pools[i], targetPoint: aiScoreLabel.position)
+                    AIScore += pools[i].getBit()
+                    aiScoreLabel.text = "You: " + String(AIScore)
+                    pools[i].setBit(0)
+                }
+                return
+            }
+        }
+        
         currentPlayer = newTurn
         switch newTurn {
         case PLAYER.HUMAN:
@@ -164,10 +203,12 @@ class GameScene: SKScene {
             
             prevPool = pool
             pool.name = "pool"
+            
             pool.setBit(4)
             if (i < 6) {
                 pool.setPlayerOwned(true)
             }
+            
             pool.poolID = i
             pools.append(pool)
             poolLayer.addChild(pool)
@@ -249,7 +290,7 @@ class GameScene: SKScene {
     
     func checkScore(var lastPool: Pool) {
         readyForNextTurn = true
-        var targetPos = CGPoint.zeroPoint
+        var targetPoint = CGPoint.zeroPoint
         while(mayScore(lastPool.getBit())) {
             switch currentPlayer {
             case .HUMAN:
@@ -258,28 +299,32 @@ class GameScene: SKScene {
                 }
                 playerScore += lastPool.getBit()
                 playerScoreLabel.text = "You: " + String(playerScore)
-                targetPos = playerScoreLabel.position
+                targetPoint = playerScoreLabel.position
             case .AI:
                 if (!lastPool.isPlayerOwned()) {
                     return
                 }
                 AIScore += lastPool.getBit()
                 aiScoreLabel.text = "AI: " + String(AIScore)
-                targetPos = aiScoreLabel.position
+                targetPoint = aiScoreLabel.position
             }
-            for node in lastPool.children {
-                var otherNode = node as! SKNode
-                otherNode.position = lastPool.convertPoint(node.position, toNode: labelLayer)
-                node.removeFromParent()
-                labelLayer.addChild(otherNode)
-                let scoreAction = SKAction.sequence([
-                    SKAction.moveTo(targetPos, duration: 0.3),
-                    SKAction.removeFromParent()
-                    ])
-                otherNode.runAction(scoreAction)
-            }
+            animateScore(lastPool, targetPoint: targetPoint)
             lastPool.setBit(0)
             lastPool = lastPool.getPrev()
+        }
+    }
+    
+    func animateScore(var pool: Pool, targetPoint: CGPoint) {
+        for node in pool.children {
+            var otherNode = node as! SKNode
+            otherNode.position = pool.convertPoint(node.position, toNode: labelLayer)
+            node.removeFromParent()
+            labelLayer.addChild(otherNode)
+            let scoreAction = SKAction.sequence([
+                SKAction.moveTo(targetPoint, duration: 0.65),
+                SKAction.removeFromParent()
+                ])
+            otherNode.runAction(scoreAction)
         }
     }
     
@@ -313,7 +358,6 @@ class GameScene: SKScene {
         label.position = CGPoint(
             x: self.frame.width / 2,
             y: self.frame.height / 2)
-        
         labelLayer.addChild(label)
         
         let labelAction = SKAction.sequence([
