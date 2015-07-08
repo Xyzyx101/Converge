@@ -24,6 +24,8 @@ class GameScene: SKScene {
     let playerScoreLabel = SKLabelNode(fontNamed: "Orbitron-Regular")
     let aiScoreLabel = SKLabelNode(fontNamed: "Orbitron-Regular")
     var poolOffset = CGPoint.zeroPoint
+    var readyForNextTurn = false
+    var willGoNext = PLAYER.HUMAN
     
     enum PLAYER {
         case HUMAN
@@ -64,8 +66,8 @@ class GameScene: SKScene {
             {
                 if let pool = node as? Pool {
                     if pool.isPlayerOwned() && pool.getBit() != 0 {
+                        prepareNextTurn(PLAYER.AI)
                         distribute(pool);
-                        nextTurn(PLAYER.AI)
                     }
                 }
             }
@@ -80,11 +82,18 @@ class GameScene: SKScene {
         if (playerScore >= 24) {
             playerWon = true
             gameOver = true
+            readyForNextTurn = false
             displayGameOverMessage()
         } else if (AIScore) >= 24 {
             playerWon = false
             gameOver = true
+            readyForNextTurn = false
             displayGameOverMessage()
+        }
+        
+        if readyForNextTurn {
+            nextTurn(willGoNext)
+            readyForNextTurn = false
         }
     }
     
@@ -98,12 +107,16 @@ class GameScene: SKScene {
             displayMessage("AI Turn", duration: 1)
             let pretendImThinking = SKAction.waitForDuration(1.5)
             self.runAction(SKAction.sequence([pretendImThinking, SKAction.runBlock({
+                self.prepareNextTurn(PLAYER.HUMAN)
                 let move = self.ai.getMove(self.pools)
                 self.distribute(self.pools[move])
-                self.nextTurn(PLAYER.HUMAN)
                 })]))
             break
         }
+    }
+    
+    func prepareNextTurn(newTurn : PLAYER) {
+        willGoNext = newTurn
     }
     
     func buildBoard() {
@@ -164,8 +177,8 @@ class GameScene: SKScene {
     func distribute(pool: Pool) {
         var bitCount: Int = pool.children.count
         
+        /*
         distributeLayer.position = CGPoint(x : pool.position.x + poolOffset.x, y: pool.position.y + poolOffset.y)
-        
         for node in pool.children {
             var otherNode = node as! SKNode
             var fuckSwift = pool.convertPoint(node.position, toNode: distributeLayer)
@@ -175,7 +188,8 @@ class GameScene: SKScene {
         }
         var choosePoolAction = SKAction.rotateByAngle(CGFloat(360 * M_PI / 180.0), duration: 1)
         distributeLayer.runAction(choosePoolAction)
-        sleep(1)
+        sleep(1)*/
+        
         pool.setBit(0)
         var targetPool = pool.getNext()
         while(bitCount > 0) {
@@ -191,6 +205,7 @@ class GameScene: SKScene {
     }
     
     func checkScore(var lastPool: Pool) {
+        readyForNextTurn = true
         while(mayScore(lastPool.getBit())) {
             switch currentPlayer {
             case .HUMAN:
