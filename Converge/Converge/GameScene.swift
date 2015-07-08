@@ -177,22 +177,22 @@ class GameScene: SKScene {
     func distribute(pool: Pool) {
         var bitCount: Int = pool.children.count
         
-        /*
         distributeLayer.position = CGPoint(x : pool.position.x + poolOffset.x, y: pool.position.y + poolOffset.y)
         for node in pool.children {
             var otherNode = node as! SKNode
-            var fuckSwift = pool.convertPoint(node.position, toNode: distributeLayer)
-            otherNode.position = fuckSwift
+            otherNode.position = pool.convertPoint(node.position, toNode: distributeLayer)
             node.removeFromParent()
             distributeLayer.addChild(node as! SKNode)
         }
         var choosePoolAction = SKAction.rotateByAngle(CGFloat(360 * M_PI / 180.0), duration: 1)
         distributeLayer.runAction(choosePoolAction)
-        sleep(1)*/
         
         pool.setBit(0)
+        var completeBits = 0
+        var animCount = bitCount
         var targetPool = pool.getNext()
         while(bitCount > 0) {
+            completeBits++
             targetPool.incBit()
             bitCount--
             targetPool = targetPool.getNext()
@@ -200,8 +200,18 @@ class GameScene: SKScene {
                 targetPool = targetPool.getNext() // skip original pool
             }
         }
-        distributeLayer.setScale(1)
-        checkScore(targetPool.getPrev())
+        
+        var animCompleteAction = SKAction.repeatActionForever(
+            SKAction.runBlock({
+                if completeBits >= animCount {
+                    self.distributeLayer.zRotation = 0
+                    self.distributeLayer.setScale(1)
+                    self.distributeLayer.removeAllActions()
+                    self.checkScore(targetPool.getPrev())
+                }
+            })
+        )
+        distributeLayer.runAction(animCompleteAction)
     }
     
     func checkScore(var lastPool: Pool) {
