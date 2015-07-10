@@ -39,8 +39,8 @@ class GameScene: SKScene {
         background.anchorPoint = CGPoint.zeroPoint
         background.zPosition = 25
         
-        //let fragShader = SKShader(fileNamed: "backgroundBlur")
-        //background.shader = fragShader
+        let fragShader = SKShader(fileNamed: "backgroundBlur")
+        background.shader = fragShader
 
         addChild(background)
         

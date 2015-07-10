@@ -196,8 +196,8 @@ class Pool: SKSpriteNode {
         bit.position = CGPoint(x: x, y: y)
         bit.zPosition = z
         
-        //let fragShader = SKShader(fileNamed: "bitPulse")
-        //bit.shader = fragShader
+        let fragShader = SKShader(fileNamed: "bitPulse")
+        bit.shader = fragShader
         
         self.addChild(bit)
     }
