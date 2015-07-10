@@ -24,7 +24,6 @@ class AI {
     }
     
     internal func getMove(pools: [Pool]) -> Int {
-        
         switch self.type! {
         case .POTATO:
             return getPotatoMove(pools)
@@ -50,7 +49,7 @@ class AI {
             }
             return bestMove
         case .HARD:
-            aiBoard = AIBoard(realPools: pools, recurseDepth: 5)
+            aiBoard = AIBoard(realPools: pools, recurseDepth: 4)
             var bestScore: Int = 0
             let bestMove = aiBoard.getBestMove(&bestScore)
             if bestMove == -1 {
@@ -194,6 +193,9 @@ class AIBoard {
         if bestScore == Int.min {
             bestScore = 24
         }
+        
+        // This should weight a fewer number of turns higher than later even with the same score
+        bestScore += self.recurseDepth
         
         if isPlayerTurn {
             bestScore *= -1

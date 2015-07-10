@@ -13,17 +13,17 @@ class Pool: SKSpriteNode {
     private weak var prev: Pool! = nil
     private var bitCount : Int = 0
     private var bitSize : CGFloat = 0
-    private var bitTex = SKTexture(imageNamed: "bit")
+    static private var bitTex = SKTexture(imageNamed: "bit")
+    static private var texture = SKTexture(imageNamed: "pool")
     private var playerOwned = false
     
     internal var poolID : Int = 0// DELETE ME -- debug only
     
     init(origin: CGPoint, width: CGFloat, height: CGFloat, bitSize: CGFloat) {
         self.bitSize = bitSize
-        var texture = SKTexture(imageNamed: "pool")
         var color = UIColor(white: CGFloat(1), alpha: CGFloat(1))
         var size = CGSize(width: width, height: height)
-        super.init(texture: texture, color: color, size: size)
+        super.init(texture: Pool.texture, color: color, size: size)
         anchorPoint = CGPoint.zeroPoint
         position = CGPoint(x: origin.x, y: origin.y)
     }
@@ -192,11 +192,13 @@ class Pool: SKSpriteNode {
     }
     
     func drawBit(#x: CGFloat, y: CGFloat, z: CGFloat = CGFloat(0)) {
-        var bit = SKSpriteNode(texture: bitTex, size: CGSize(width: bitSize, height: bitSize))
+        var bit = SKSpriteNode(texture: Pool.bitTex, size: CGSize(width: bitSize, height: bitSize))
         bit.position = CGPoint(x: x, y: y)
         bit.zPosition = z
-        let fragShader = SKShader(fileNamed: "bitPulse")
-        bit.shader = fragShader
+        
+        //let fragShader = SKShader(fileNamed: "bitPulse")
+        //bit.shader = fragShader
+        
         self.addChild(bit)
     }
     
