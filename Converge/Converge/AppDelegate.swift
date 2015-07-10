@@ -38,7 +38,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SKTAudio.sharedInstance().backgroundMusicPlayer?.stop()
         SKTAudio.sharedInstance().soundEffectPlayer?.stop()
     }
-
-
 }
 

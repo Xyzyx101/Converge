@@ -39,7 +39,6 @@ class AI {
                 if bestMove == -1 {
                     return getPotatoMove(pools)
                 }
-                println(bestMove)	
                 return bestMove
             }
         case .MED:

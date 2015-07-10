@@ -10,16 +10,25 @@
     </style>
 </head>
 <body>
-    <h1>Rules</h1>
+    <h1>The Board</h1>
     <ol>
-        <li>Take a turn</li>
-        <li>AI takes a turn</li>
-        <li>Try not to suck</li>
+        <li>The board is a grid of 12 pools.  The bottom row of 6 belong to you and the top row belongs to the AI.</li>
+        <li>The pools contain playing pieces called bits.  The game starts with 4 bits in each pool.</li>
+        <li>Your current score is indicated at the bottom left of the board and the AI's score is at the top right.</li>
+    </ol>
+    <h1>Taking a Turn</h1>
+    <ol>
+        <li>Select one of the pools or your side of the board.</li>
+        <li>Bits will be removed from the selected pool and counted out one per pool around the board counter-clockwise until you run out of bits	.  If you have enough bits to make it around the board you will skip the original pool leaving it empty.</li>
+        <li>To score you must capture bits by placing your last bit into your opponents pool and leave that pool with a count of 2, 4, 8 or 16.</li>
+        <li>When a pool of bits is capture you may also capture the previous(clockwise) pool if it also is on your opponents side of the board and has 2, 4, 8 or 16 bits at the end of your turn.</li>
+        <li>Captured bits are added to your score.</li>
     </ol>
     <h1>Winning</h1>
+    <p>There are two ways of winning the game.</p>
     <ol>
-        <li>Get 24 points</li>
-        <li>Clear all of the bits from your side of the board</li>
+        <li>First player to get 24 points wins.</li>
+        <li>Clear all of the bits from one side of the board.  If at the start of a players turn all of their pools are empty so they have no available moves then they capture all the bits on the other side of the board and win the game.</li>
     </ol>
     <p style="text-align:center"><em>Enjoy!</em></p>
 </body>
