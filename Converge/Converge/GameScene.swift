@@ -112,7 +112,7 @@ class GameScene: SKScene {
                 readyForNextTurn = false
                 displayGameOverMessage()
                 for i in 6...11 {
-                    animateScore(pools[i], targetPoint: playerScoreLabel.position)
+                    animateScore(pools[i], player: PLAYER.HUMAN)
                     playerScore += pools[i].getBit()
                     playerScoreLabel.text = "You: " + String(playerScore)
                     pools[i].setBit(0)
@@ -129,7 +129,7 @@ class GameScene: SKScene {
                 readyForNextTurn = false
                 displayGameOverMessage()
                 for i in 0...5 {
-                    animateScore(pools[i], targetPoint: aiScoreLabel.position)
+                    animateScore(pools[i], player: PLAYER.AI)
                     AIScore += pools[i].getBit()
                     aiScoreLabel.text = "You: " + String(AIScore)
                     pools[i].setBit(0)
@@ -217,8 +217,8 @@ class GameScene: SKScene {
     }
     
     func distribute(pool: Pool) {
+        Audio.instance().play(Audio.Sound.SELECT_POOL)
         var bitCount: Int = pool.children.count
-        
         distributeLayer.position = CGPoint(x : pool.position.x + poolOffset.x, y: pool.position.y + poolOffset.y)
         for node in pool.children {
             var otherNode = node as! SKNode
@@ -258,6 +258,7 @@ class GameScene: SKScene {
                         SKAction.scaleTo(1.0, duration: 0.75)
                     ]),
                     SKAction.runBlock({
+                        Audio.instance().play(Audio.Sound.COUNT_BIT)
                         completeBits++
                         targetCopy.incBit()
                     }),
@@ -290,7 +291,6 @@ class GameScene: SKScene {
     
     func checkScore(var lastPool: Pool) {
         readyForNextTurn = true
-        var targetPoint = CGPoint.zeroPoint
         while(mayScore(lastPool.getBit())) {
             switch currentPlayer {
             case .HUMAN:
@@ -299,22 +299,29 @@ class GameScene: SKScene {
                 }
                 playerScore += lastPool.getBit()
                 playerScoreLabel.text = "You: " + String(playerScore)
-                targetPoint = playerScoreLabel.position
             case .AI:
                 if (!lastPool.isPlayerOwned()) {
                     return
                 }
                 AIScore += lastPool.getBit()
                 aiScoreLabel.text = "AI: " + String(AIScore)
-                targetPoint = aiScoreLabel.position
             }
-            animateScore(lastPool, targetPoint: targetPoint)
+            animateScore(lastPool, player: currentPlayer)
             lastPool.setBit(0)
             lastPool = lastPool.getPrev()
         }
     }
     
-    func animateScore(var pool: Pool, targetPoint: CGPoint) {
+    func animateScore(var pool: Pool, player: PLAYER) {
+        var targetPoint = CGPoint.zeroPoint
+        if player == PLAYER.HUMAN {
+            targetPoint = playerScoreLabel.position
+            Audio.instance().play(Audio.Sound.PLAYER_SCORE)
+            
+        } else {
+            targetPoint = aiScoreLabel.position
+            Audio.instance().play(Audio.Sound.AI_SCORE)
+        }
         for node in pool.children {
             var otherNode = node as! SKNode
             otherNode.position = pool.convertPoint(node.position, toNode: labelLayer)

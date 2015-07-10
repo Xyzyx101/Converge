@@ -12,8 +12,7 @@ class MainMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        Audio.instance().playMusic()
     }
 
     override func didReceiveMemoryWarning() {

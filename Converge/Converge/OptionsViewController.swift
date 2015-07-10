@@ -21,6 +21,21 @@ class OptionsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func sfxToggle(toggle: UISwitch) {
+        if toggle.on {
+            Audio.instance().sfxOn()
+        } else {
+            Audio.instance().sfxOff()
+        }
+    }
+    
+    @IBAction func musicToggle(toggle: UISwitch) {
+        if toggle.on {
+            Audio.instance().musicOn()
+        } else {
+            Audio.instance().musicOff()
+        }
+    }
 
     /*
     // MARK: - Navigation
