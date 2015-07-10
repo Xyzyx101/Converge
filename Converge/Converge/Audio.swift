@@ -17,16 +17,17 @@ public class Audio {
     }
     
     func musicOn() {
-        SKTAudio.sharedInstance().pauseBackgroundMusic()
+        SKTAudio.sharedInstance().resumeBackgroundMusic()
         music = true
     }
     
     func musicOff() {
-        SKTAudio.sharedInstance().resumeBackgroundMusic()
+        SKTAudio.sharedInstance().pauseBackgroundMusic()
         music = false
     }
     
     func sfxOn() {
+        SKTAudio.sharedInstance().playSoundEffect("player_score.mp3")
         sfx = true
     }
     
@@ -35,6 +36,11 @@ public class Audio {
     }
     
     func playMusic() {
+        if let player = SKTAudio.sharedInstance().backgroundMusicPlayer {
+            if player.playing {
+                return
+            }
+        }
         if music {
             SKTAudio.sharedInstance().playBackgroundMusic("LightlessDawn.mp3")
         }

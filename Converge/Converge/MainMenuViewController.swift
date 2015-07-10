@@ -12,7 +12,6 @@ class MainMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        Audio.instance().playMusic()
     }
 
     override func didReceiveMemoryWarning() {

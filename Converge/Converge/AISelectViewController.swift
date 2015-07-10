@@ -30,9 +30,12 @@ class AISelectViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        var dest = segue.destinationViewController as! GameViewController
+        //if segue.description == "toMainMenu" {
+        //    return
+        //}
         
-        switch segue.identifier! {
+        if var dest = segue.destinationViewController as? GameViewController {
+            switch segue.identifier! {
             case "potatoSegue":
                 dest.setAI(AI_TYPE.POTATO)
             case "easySegue":
@@ -41,10 +44,9 @@ class AISelectViewController: UIViewController {
                 dest.setAI(AI_TYPE.MED)
             case "hardSegue":
                 dest.setAI(AI_TYPE.HARD)
-        default:
-            println("segue button failed")
+            default:
+                println("segue button failed")
+            }
         }
     }
-    
-
 }

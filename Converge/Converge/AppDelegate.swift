@@ -15,28 +15,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        println("didFinishLoading")
         // Override point for customization after application launch.
         return true
     }
 
     func applicationWillResignActive(application: UIApplication) {
-        SKTAudio.sharedInstance().backgroundMusicPlayer?.stop()
-        SKTAudio.sharedInstance().soundEffectPlayer?.stop()
+        println("resignActive")
+        //SKTAudio.sharedInstance().backgroundMusicPlayer?.stop()
+        //SKTAudio.sharedInstance().soundEffectPlayer?.stop()
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
+        println("EnterBackground")
         Audio.instance().musicOff()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
+        println("EnterForeground")
         Audio.instance().musicOn()
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        Audio.instance().musicOn()
+        println("Active")
+        Audio.instance().playMusic()
     }
 
     func applicationWillTerminate(application: UIApplication) {
+        println("terminate")
         SKTAudio.sharedInstance().backgroundMusicPlayer?.stop()
         SKTAudio.sharedInstance().soundEffectPlayer?.stop()
     }
