@@ -195,6 +195,8 @@ class Pool: SKSpriteNode {
         var bit = SKSpriteNode(texture: bitTex, size: CGSize(width: bitSize, height: bitSize))
         bit.position = CGPoint(x: x, y: y)
         bit.zPosition = z
+        let fragShader = SKShader(fileNamed: "bitPulse")
+        bit.shader = fragShader
         self.addChild(bit)
     }
     
